@@ -1,3 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse #HttpResponse para usar o request
 
-# Create your views here.
+# Vai ser visto pelo usuario
+def homepage(request):
+    return HttpResponse('<h1>Hello World</h1>')
