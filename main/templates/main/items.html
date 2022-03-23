@@ -7,6 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    {{ items }}
+    {% for item in items %}<!--Logica de programacao em django quando usa a %-->
+    <h1>{{ item }}</h1>
+    {% endfor %}<!--Fechar o for-->
 </body>
 </html>
