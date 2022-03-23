@@ -21,12 +21,23 @@ Loja online - ITEMS
   <tbody>
     <!--loop para trazer todos os itens do banco de dados-->
     {% for item in items %}
+    {% include 'main/include/i_modal.html' %}<!--Incluir o caminho para acessar o i_modal.html-->
     <tr>
       <th scope="row">{{ item.pk }}</th>
       <td>{{ item.name }}</td>
-      <td></td>
+      <td>
+        <img alt="image" style="width: 60px" src="{{ item.image_url }}">
+        <!--Colocar imagem-->
+      </td>
       <td>{{ item.price }}</td>
-      <td></td>
+      <td>
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#Modal-MoreInfo">Detalhes<!-- Botao 1: data-target="#Modal-MoreInfo eu trago o id do modal do arquivo i_modal.html-->
+          Produto
+        </button>
+        <button type="button" class="btn btn-outline-success" data-toggle="modal"
+          data-target="#Modal-PurchaseConfirm">Comprar Produto<!-- Botao 2 data-target="#Modal-PurchaseConfirm eu trago o id do modal do arquivo i_modal.html-->
+        </button>
+      </td>
     </tr>
     {% endfor %}
   </tbody>
