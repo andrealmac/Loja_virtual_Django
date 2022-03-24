@@ -6,6 +6,10 @@ from main.models import Item
 from django.contrib.auth import authenticate, login, logout #para realizar os metodos de login
 from django.contrib.auth.forms import UserChangeForm
 
+#mensagens 
+from django.contrib import messages
+
+
 # Vai ser visto pelo usuario
 def homepage(request):
     return render(request, template_name='main/home.html')
@@ -20,7 +24,7 @@ def itemspage(request):
             purchased_item_object = Item.objects.get(name=purchased_item)
             purchased_item_object.donoowner = request.user
             purchased_item_object.save()
-            print(f'OBRIGADO, O PRODUTO {purchased_item} FOI COMPRADO COM SUCESSO POR {request.user.username}')
+            messages.success(request, f'OBRIGADO! PRODUTO COMPRADO {purchased_item_object.name} POR {purchased_item_object.price}')
         return redirect('items')
 
 def loginpage(request):

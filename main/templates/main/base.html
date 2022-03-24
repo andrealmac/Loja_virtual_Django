@@ -17,16 +17,25 @@
 </head>
 
 <body>
+    <!--Incluir mensagens de compra dos itens-->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="container">
+            {{ message }}
+            </div>
+        {% endfor %}
+    {% endif%}
+
     {% include 'main/include/navbar.html' %}<!--Chamar a arquivo navbar para ser mostrado atraves do arquivo base html-->
 
     {% block pageheader %}
     {% endblock %}
 
     <div class="container">
-        {% block content %}
-        <!--Iniciar um bloco-->
-        {% endblock %}
-        <!--Finalizar o bloco-->
+    {% block content %}
+    <!--Iniciar um bloco-->
+    {% endblock %}
+    <!--Finalizar o bloco-->
     </div>
 
 
