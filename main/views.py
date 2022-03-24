@@ -14,7 +14,18 @@ def itemspage(request):
     return render(request, template_name='main/items.html', context={'items':items})
 
 def loginpage(request):
-    return render(request, template_name='main/login.html')
+    if request.method == 'GET':
+        return render(request, template_name='main/login.html')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username = username, password=password)
+        #Saber se os campos tem algo digitado
+        if user is not None:
+            return redirect('items')
+        #Caso esteja vazio
+        else:
+            return redirect('login')
 
 def registerpage(request):
     if request.method == 'GET':
@@ -23,7 +34,15 @@ def registerpage(request):
         form = UserChangeForm(request.POST)   
         if form.is_valid():#como se fosse salvar um commit
             form.save()
-        return redirect('register')
+            #autenticacao do login e senha
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username = username, password=password)
+            return redirect('home')
+        else:
+            return redirect('register')
+        
+    return redirect('register')
 
 def logoutpage(request):
     pass

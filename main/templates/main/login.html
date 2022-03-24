@@ -7,4 +7,31 @@
 
 <!--BOLCO DO HEADER-->
 {% block content %}
+<body class="text-center">
+    <form class="form-signin" method="POST">
+        {% csrf_token %}
+        <img class="mb-4" src="https://www.gellog.com.br/assets/imagens/avatar.png" alt="">
+        <h1 class="h3 mb-3 font-weight-normal">
+            Por favor, inscreva-se
+        </h1>
+        <br>
+        <label for="inputUsername" class="sr-only">
+            Usuario
+        </label>
+        <input type="text" id="inputUsername" class="form-control" placeholder="Usuario" name="username" required autofocus>
+        <br>
+
+        <label for="inputPassword1" class="sr-only">
+            Senha
+        </label>
+        <input type="password" id="inputPassword1" class="form-control" placeholder="Senha" name="password" required>
+        <br>
+
+       <div class="checkbox mb-3">
+            <h6>Nao possui uma conta?</h6>
+            <a class="btn btn-sm btn-secondary bg-success" href="{% url 'register' %}">Cadastrar</a><!--Mandar para a pagina de login-->
+        </div>
+        <button class="btn btn-lg btn-primary btn-block bg-success" tyoe="submit">Entrar</button>
+    </form>
+</body>
 {% endblock %}
