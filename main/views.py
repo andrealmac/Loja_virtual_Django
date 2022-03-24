@@ -9,9 +9,19 @@ from django.contrib.auth.forms import UserChangeForm
 # Vai ser visto pelo usuario
 def homepage(request):
     return render(request, template_name='main/home.html')
+
 def itemspage(request):
-    items = Item.objects.all()
-    return render(request, template_name='main/items.html', context={'items':items})
+    if request.method == 'GET':
+        items = Item.objects.filter(donoowner=None)
+        return render(request, template_name='main/items.html', context={'items':items})
+    if request.method == 'POST':
+        purchased_item = request.POST.get('purchased-item')#Buscar no arquivo i_modal.html
+        if purchased_item:
+            purchased_item_object = Item.objects.get(name=purchased_item)
+            purchased_item_object.donoowner = request.user
+            purchased_item_object.save()
+            print(f'OBRIGADO, O PRODUTO {purchased_item} FOI COMPRADO COM SUCESSO POR {request.user.username}')
+        return redirect('items')
 
 def loginpage(request):
     if request.method == 'GET':
