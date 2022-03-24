@@ -22,6 +22,7 @@ def loginpage(request):
         user = authenticate(username = username, password=password)
         #Saber se os campos tem algo digitado
         if user is not None:
+            login(request, user)
             return redirect('items')
         #Caso esteja vazio
         else:
@@ -45,5 +46,5 @@ def registerpage(request):
     return redirect('register')
 
 def logoutpage(request):
-    pass
-    #return render(request, template_name='main/logout.html')
+    logout(request)
+    return redirect('home')

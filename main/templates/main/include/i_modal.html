@@ -41,10 +41,23 @@
                 </button>
             </div>
             <div class="modal-body">
-                ACOES DE COMPRA DE ITENS
+            <form method="POST">
+                <!--ACOES DE COMPRA DE ITENS-->
+                {% csrf_token %}
+                <h4 class="text-center">
+                    {{ item.name }} Valor {{ item.price }}$
+                </h4>
+                <br>
+                <h6 class="text-center">
+                    Ao clicar em comprar, voce compara este produto
+                </h6>
+                <br>
+                <input type="hidden" name="purchased-item" value="{{ item.name }}">
+                <button type="submit" class="btn btn-outline-success btn-block">Comprar</button>
+            </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary"
+                <button type="button" class="btn btn btn-outline-success btn-block"
                 data-dismiss="modal">FECHAR
             </button>
             </div>

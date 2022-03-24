@@ -15,12 +15,23 @@
             </li>
         </ul>
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Login</a><!--Referenciando a pagina items-->
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'register' %}">Cadastrar</a><!--Referenciando a pagina items-->
-            </li>
+            <!--Mostrar o usuario que esta no login-->
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#}">Ola, {{user.username}}</a>
+                </li>
+                <!--Logout-->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Cadastrar</a>
+                </li>
+            {% endif %}
         </ul>
     </div>
 </nav>
