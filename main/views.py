@@ -37,6 +37,7 @@ def loginpage(request):
         #Saber se os campos tem algo digitado
         if user is not None:
             login(request, user)
+            messages.success(request, f'BEM VINDO')
             return redirect('items')
         #Caso esteja vazio
         else:
@@ -61,4 +62,5 @@ def registerpage(request):
 
 def logoutpage(request):
     logout(request)
+    messages.success(request, f'SAINDO DO SISTEMAS')
     return redirect('home')

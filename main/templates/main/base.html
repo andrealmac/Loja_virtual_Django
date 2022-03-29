@@ -18,14 +18,14 @@
 
 <body>
     <!--Incluir mensagens de compra dos itens-->
-    {% if messages %}
+    {% comment %} {% if messages %}
         {% for message in messages %}
             <div class="container">
             {{ message }}
             </div>
         {% endfor %}
-    {% endif%}
-
+    {% endif%} {% endcomment %}
+    {% include 'main/include/message.html' %}
     {% include 'main/include/navbar.html' %}<!--Chamar a arquivo navbar para ser mostrado atraves do arquivo base html-->
 
     {% block pageheader %}
@@ -37,7 +37,14 @@
     {% endblock %}
     <!--Finalizar o bloco-->
     </div>
+    <script>
+        setTimeout(function(){
+            if($('#msg').length>0){
+                $('#msg').remove();
 
+            }
+        },4000)
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
